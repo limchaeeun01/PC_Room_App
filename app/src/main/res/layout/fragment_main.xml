@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainFragment"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/allBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/popularBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인기" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/riceBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="밥류" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/noodleBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="면류" />
+        </TableRow>
+
+        <TableRow>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/hotDogBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="핫도그" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sideBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사이드" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/toppingBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토핑" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/otherBtn"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타" />
+        </TableRow>
+
+
+    </TableLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDEDED">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/menu_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

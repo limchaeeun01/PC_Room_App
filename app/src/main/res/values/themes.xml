@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PcRoomApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.PcRoomApp" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <style name="NavTextSize" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

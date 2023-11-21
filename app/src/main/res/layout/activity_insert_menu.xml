@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Dialog.InsertMenuActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/closeBtn"
+            android:layout_marginTop="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/baseline_close_24"
+            android:layout_gravity="right" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메뉴 추가"
+            android:textSize="25sp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:src="@drawable/addphoto"
+            android:id="@+id/menuImage"
+            android:layout_marginTop="20dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"/>
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="150dp"
+            android:layout_height="17dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/nameArea"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="메뉴명"
+            android:gravity="center"
+            android:focusableInTouchMode="true"/>
+
+        <EditText
+            android:id="@+id/priceArea"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="가격(원)"
+            android:gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:background="@drawable/radius_background"
+            android:id="@+id/introArea"
+            android:padding="7dp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="메뉴소개"
+            android:layout_gravity="center"
+            android:gravity="left"/>
+
+        <TextView
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="필요 재료"
+            android:textSize="15sp"
+            android:layout_gravity="center"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addIngredientBtn"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/baseline_add_box_24" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="메뉴판에 추가"
+                android:textSize="15sp"
+                android:layout_gravity="center"/>
+
+            <CheckBox
+                android:id="@+id/onMenu"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="품절 처리"
+                android:textSize="15sp"
+                android:layout_gravity="center"/>
+
+            <CheckBox
+                android:id="@+id/soldOut"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancleBtn"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="취소"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/okBtn"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="확인"
+                android:textSize="20sp"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+

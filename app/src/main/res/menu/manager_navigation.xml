@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_bottom_main"
+        android:icon="@drawable/baseline_fastfood_24"
+        android:title="메인" />
+    <item
+        android:id="@+id/nav_bottom_menu"
+        android:icon="@drawable/baseline_feed_24"
+        android:title="주문현황" />
+    <item
+        android:id="@+id/nav_bottom_stock"
+        android:icon="@drawable/baseline_ballot_24"
+        android:title="메뉴/재고관리" />
+
+</menu>

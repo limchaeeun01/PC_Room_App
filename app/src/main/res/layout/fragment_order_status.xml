@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.OrderStatusFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/allBtn"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="#EDEDED"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전체"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/orderBtn"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="#C3C3C3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="신규주문"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/soldBtn"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="#C3C3C3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="판매완료"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancleBtn"
+            android:layout_marginLeft="5dp"
+            android:backgroundTint="#C3C3C3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문취소"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDEDED"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="42dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
