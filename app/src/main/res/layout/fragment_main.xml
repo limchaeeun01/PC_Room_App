@@ -8,6 +8,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
+        android:background="#EFEFEF"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:stretchColumns="*">
@@ -16,7 +17,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/allBtn"
-                android:backgroundTint="#8131B3"
+                android:backgroundTint="#360455"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,12 +51,12 @@
         <TableRow>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/hotDogBtn"
+                android:id="@+id/snackBtn"
                 android:backgroundTint="#8131B3"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="핫도그" />
+                android:text="과자" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/sideBtn"
@@ -74,12 +75,12 @@
                 android:text="토핑" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/otherBtn"
+                android:id="@+id/drinkBtn"
                 android:backgroundTint="#8131B3"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="기타" />
+                android:text="음료" />
         </TableRow>
 
 
@@ -88,16 +89,18 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EDEDED">
+        android:background="#EFEFEF">
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/menu_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chaeni__beam.pcroomapp.Adapter.MainAdapter
+import com.chaeni__beam.pcroomapp.Adapter.MenuStockCalc
 import com.chaeni__beam.pcroomapp.Adapter.StockAdapter
 import com.chaeni__beam.pcroomapp.Dialog.ModifyStockDialog
 import com.chaeni__beam.pcroomapp.R
@@ -19,7 +20,7 @@ import com.chaeni__beam.pcroomapp.db.DataBaseHelper
 import com.chaeni__beam.pcroomapp.db.MainData
 import com.chaeni__beam.pcroomapp.db.StockData
 
-class MainFragment : Fragment(), View.OnClickListener {
+class MainFragment : Fragment(), View.OnClickListener, MenuStockCalc {
 
     private var _binding : FragmentMainBinding ?= null
     private val binding get() = _binding!!
@@ -51,14 +52,18 @@ class MainFragment : Fragment(), View.OnClickListener {
         binding.popularBtn.setOnClickListener(this)
         binding.riceBtn.setOnClickListener(this)
         binding.noodleBtn.setOnClickListener(this)
-        binding.hotDogBtn.setOnClickListener(this)
+        binding.snackBtn.setOnClickListener(this)
         binding.sideBtn.setOnClickListener(this)
         binding.toppingBtn.setOnClickListener(this)
-        binding.otherBtn.setOnClickListener(this)
+        binding.drinkBtn.setOnClickListener(this)
+
+        mode = "all"
 
         readData()
 
         clickMenu()
+
+        menuStockCalc(requireContext())
 
         return view
     }
@@ -75,6 +80,8 @@ class MainFragment : Fragment(), View.OnClickListener {
 
 
     fun readData(){
+        binding.menuRecyclerview.adapter = null
+
         menuList.clear()
 
         val mode = when(mode){
@@ -82,10 +89,10 @@ class MainFragment : Fragment(), View.OnClickListener {
             "popular" -> {"인기"}
             "rice" ->{"밥류"}
             "noodle" ->{"면류"}
-            "hotdog" ->{"핫도그"}
+            "snack" ->{"과자"}
             "side" ->{"사이드"}
             "topping" ->{"토핑"}
-            "other" ->{"기타"}
+            "drink" ->{"음료"}
             else ->{}
         }
 
@@ -105,7 +112,28 @@ class MainFragment : Fragment(), View.OnClickListener {
             }
             cursor.close()
         }else if(mode == "인기"){
+            val cursor = database.rawQuery("SELECT menu_image, menu_name, menu_price, " +
+                    "menu_intro, menu_soldOut, menu_code, menu_sale FROM Menu WHERE menu_show='true' " +
+                    "ORDER BY menu_sale DESC", null)
 
+            var count = 0
+
+            for(i in 0..cursor.count-1){
+                if(count==10){
+                    break
+                }
+                cursor.moveToNext()
+                if(cursor.getInt(6) == 0){
+                    break
+                }else{
+                    val date = MainData(cursor.getBlob(0),
+                        cursor.getString(1), cursor.getInt(2),
+                        cursor.getString(3), cursor.getString(4), cursor.getInt(5))
+                    menuList.add(date)
+                    count++
+                }
+                }
+            cursor.close()
         }else{
             val cursor = database.rawQuery("SELECT menu_image, menu_name, menu_price, " +
                     "menu_intro, menu_soldOut, menu_code FROM Menu WHERE menu_show='true' AND menu_category='$mode'", null)
@@ -124,18 +152,15 @@ class MainFragment : Fragment(), View.OnClickListener {
         binding.menuRecyclerview.layoutManager = GridLayoutManager(activity, 2)
         binding.menuRecyclerview.adapter = mainAdapter
 
-
         dbHelper.close()
     }
 
     fun clickMenu(){
-        mainAdapter.setItemClickListener(object : MainAdapter.onItemClickListener{
+        mainAdapter.setItemClickListener(object : MainAdapter.OnItemClickListener{
             override fun onItemClick(v:View, position: Int) {
                 if(menuList[position].soldOut == "false"){
                     super.onItemClick(v, position)
-
                 }else{
-
                 }
             }
         })
@@ -171,10 +196,10 @@ class MainFragment : Fragment(), View.OnClickListener {
                 readData()
             }
 
-            R.id.hotDogBtn ->{
-                mode = "hotdog"
+            R.id.snackBtn ->{
+                mode = "snack"
                 changeBtnColor()
-                binding.hotDogBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#360455"))
+                binding.snackBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#360455"))
                 readData()
             }
 
@@ -192,10 +217,10 @@ class MainFragment : Fragment(), View.OnClickListener {
                 readData()
             }
 
-            R.id.otherBtn ->{
-                mode = "other"
+            R.id.drinkBtn ->{
+                mode = "drink"
                 changeBtnColor()
-                binding.otherBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#360455"))
+                binding.drinkBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#360455"))
                 readData()
             }
         }
@@ -206,10 +231,10 @@ class MainFragment : Fragment(), View.OnClickListener {
         binding.popularBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
         binding.riceBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
         binding.noodleBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
-        binding.hotDogBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
+        binding.snackBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
         binding.sideBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
         binding.toppingBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
-        binding.otherBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
+        binding.drinkBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8131B3"))
     }
 
 

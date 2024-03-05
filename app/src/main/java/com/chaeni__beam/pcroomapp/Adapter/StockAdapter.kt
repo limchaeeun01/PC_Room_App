@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.chaeni__beam.pcroomapp.R
+import com.chaeni__beam.pcroomapp.db.MenuData
 import com.chaeni__beam.pcroomapp.db.StockData
 
 
-class StockAdapter(val items : MutableList<StockData>):RecyclerView.Adapter<StockAdapter.ViewHolder>() {
+class StockAdapter(val list : MutableList<StockData>):RecyclerView.Adapter<StockAdapter.ViewHolder>() {
 
+    private var items : MutableList<StockData> = list
     interface onItemClickListener {
         fun onItemClick(position: Int)
     }
@@ -48,6 +50,11 @@ class StockAdapter(val items : MutableList<StockData>):RecyclerView.Adapter<Stoc
             number.text = items.number.toString()
         }
 
+    }
+
+    fun setItems(list: MutableList<StockData>) {
+        items = list
+        notifyDataSetChanged()
     }
 
 }

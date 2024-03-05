@@ -4,6 +4,7 @@ data class OrderFormData(
     var seatNumber : Int,
     var userName : String,
     var orderId : Int,
+    var menu_code : Int,
     var menu_name : String,
     var order_price : Int,
     var order_number : Int,

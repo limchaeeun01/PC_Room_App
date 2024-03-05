@@ -25,6 +25,7 @@ class ManagerActivity : AppCompatActivity(), View.OnClickListener {
     private val fragmentMain by lazy { MainFragment() }
     private val fragmentOrder by lazy { OrderStatusFragment() }
     private val fragmentStock by lazy { MenuStockFragment() }
+    private val fragmentUser by lazy { UserFragment() }
 
     var user_code : Int? = null
 
@@ -69,6 +70,9 @@ class ManagerActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 R.id.nav_bottom_stock -> {
                     supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragmentStock).commit()
+                }
+                R.id.nav_bottom_user -> {
+                    supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragmentUser).commit()
                 }
 
             }

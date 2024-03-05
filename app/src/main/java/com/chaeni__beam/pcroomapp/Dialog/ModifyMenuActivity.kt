@@ -72,6 +72,7 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
         binding.closeBtn.setOnClickListener(this)
         binding.menuImage.setOnClickListener(this)
         binding.cancleBtn.setOnClickListener(this)
+        binding.deleteBtn.setOnClickListener(this)
 
         categorySpinner()
         setMenu()
@@ -119,10 +120,10 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
             when(cursor.getString(1)) {
                 "밥류" -> 1
                 "면류" -> 2
-                "핫도그" -> 3
+                "과자" -> 3
                 "사이드" -> 4
                 "토핑" -> 5
-                "기타" -> 6
+                "음료" -> 6
                 else -> 0
             }
         }
@@ -187,7 +188,7 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.addIngredientBtn -> {
                 SelectIngDialog(this){
-                    val data = it.split('/')
+                    val data = it.split(';')
                     ingList.add(IngData(data[0].toInt(), data[1] ,data[2].toInt()))
                     adapter.notifyDataSetChanged()
                 }.show()
@@ -203,6 +204,12 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.cancleBtn ->{
                 finish()
+            }
+
+            R.id.deleteBtn ->{
+                finish()
+                deleteMenu()
+                Toast.makeText(this, "메뉴가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -248,6 +255,21 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun deleteMenu(){
+        openDatabase()
+
+        if(database != null){
+            val sql2 = "DELETE FROM OrderForm WHERE menu_code=$code"
+            database.execSQL(sql2)
+
+            val sql3 = "DELETE FROM Ingredient WHERE menu_code=$code"
+            database.execSQL(sql3)
+
+            val sql = "DELETE FROM Menu WHERE menu_code=$code"
+            database.execSQL(sql)
+        }
+    }
+
     fun updateIng(){
         openDatabase()
 
@@ -285,9 +307,9 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
                     2 -> {
                         category = "면류"
                     }
-                    // 핫도그
+                    // 과자
                     3 -> {
-                        category = "핫도그"
+                        category = "과자"
                     }
                     // 사이드
                     4 -> {
@@ -297,9 +319,9 @@ class ModifyMenuActivity : AppCompatActivity(), View.OnClickListener {
                     5 -> {
                         category = "토핑"
                     }
-                    // 기타
+                    // 음료
                     6 -> {
-                        category = "기타"
+                        category = "음료"
                     }
                 }
             }

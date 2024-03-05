@@ -154,6 +154,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.signUpBtn ->{
                 startActivity(Intent(this, JoinActivity::class.java))
             }
+
         }
     }
 }

@@ -1,22 +1,30 @@
 package com.chaeni__beam.pcroomapp.Adapter
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.chaeni__beam.pcroomapp.Activity.MenuStockFragment
+import com.chaeni__beam.pcroomapp.Dialog.ModifyMenuActivity
 import com.chaeni__beam.pcroomapp.R
 import com.chaeni__beam.pcroomapp.db.MenuData
+import com.chaeni__beam.pcroomapp.db.StockData
 
-class MenuAdapter(val items : MutableList<MenuData>):RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
+class MenuAdapter(val list : MutableList<MenuData>):RecyclerView.Adapter<MenuAdapter.ViewHolder>() {
 
-    interface onItemClickListener {
-        fun onItemClick(position: Int)
+    private var items : MutableList<MenuData> = list
+    interface OnItemClickListener {
+        fun onItemClick(position: Int){
+
+        }
     }
 
-    private var itemClickListener: onItemClickListener?= null
+    private var itemClickListener: OnItemClickListener?= null
 
-    fun setItemClickListener(itemClickListener: onItemClickListener) {
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
         this.itemClickListener = itemClickListener
     }
 
@@ -32,6 +40,7 @@ class MenuAdapter(val items : MutableList<MenuData>):RecyclerView.Adapter<MenuAd
 
     override fun onBindViewHolder(holder: MenuAdapter.ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
+            Log.d("tttt", "Item clicked at position: $position")
             itemClickListener?.onItemClick(position)
         }
         holder.bind(items[position])
@@ -46,9 +55,15 @@ class MenuAdapter(val items : MutableList<MenuData>):RecyclerView.Adapter<MenuAd
         fun bind(items: MenuData){
             category.text = items.category
             name.text = items.name
-            number.text = items.number
-            sale.text = items.sale
+            number.text = items.number.toString()
+            sale.text = items.sale.toString()
         }
     }
+
+    fun setItems(list: MutableList<MenuData>) {
+        items = list
+        notifyDataSetChanged()
+    }
+
 
 }

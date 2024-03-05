@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="10dp">
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -76,13 +76,13 @@
         <TextView
             android:id="@+id/introText"
             android:layout_margin="13dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="메뉴 정보"
             android:textColor="@color/white"/>
 
         <LinearLayout
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="120dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -91,16 +91,16 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/numberpicker_subBtn"
                 android:background="@drawable/numberpicker_sub"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/orderNumber"
                 android:background="#9CFFFFFF"
-                android:layout_width="45dp"
-                android:layout_height="25dp"
+                android:layout_width="48dp"
+                android:layout_height="30dp"
                 android:text="1"
                 android:inputType="number"
                 android:gravity="center"
@@ -110,8 +110,8 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/numberpicker_addBtn"
                 android:background="@drawable/numberpicker_add"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:gravity="center"/>
 
@@ -123,6 +123,8 @@
             android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:backgroundTint="#8131B3"
+            android:textColor="@color/white"
             android:text="주문하기"/>
 
     </androidx.cardview.widget.CardView>

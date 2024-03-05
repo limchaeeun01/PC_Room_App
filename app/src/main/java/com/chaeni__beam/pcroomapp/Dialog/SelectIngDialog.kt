@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -56,7 +57,7 @@ class SelectIngDialog (
     fun searchIng(){
         val dbHelper = DataBaseHelper(context)
         database = dbHelper.readableDatabase  //데이터베이스 읽기 권한 획득
-        //val stockList = mutableListOf<StockData>()
+
         val cursor = database.rawQuery("SELECT * FROM Stock", null)
 
         for(i in 0..cursor.count-1){
@@ -106,7 +107,6 @@ class SelectIngDialog (
 
     private fun initViews() = with(binding) {
         // 뒤로가기 버튼, 빈 화면 터치를 통해 dialog가 사라지지 않도록
-        setCancelable(false)
         // background를 투명하게 만듦
         // (중요) Dialog는 내부적으로 뒤에 흰 사각형 배경이 존재하므로, 배경을 투명하게 만들지 않으면
         // corner radius의 적용이 보이지 않는다.
@@ -119,8 +119,8 @@ class SelectIngDialog (
             }else if(binding.numberArea.text.isNullOrBlank()){
                 Toast.makeText(context, "필요량을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }else{
-                okCallback(binding.stockCode.text.toString() + "/" + binding.selectedIng.text.toString()
-                        + "/" + binding.numberArea.text.toString())
+                okCallback(binding.stockCode.text.toString() + ";" + binding.selectedIng.text.toString()
+                        + ";" + binding.numberArea.text.toString())
                 dismiss()
             }
         }
@@ -146,6 +146,12 @@ class SelectIngDialog (
                 binding.selectedIng.visibility = View.VISIBLE
             }
         })
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        return true
     }
 
 }

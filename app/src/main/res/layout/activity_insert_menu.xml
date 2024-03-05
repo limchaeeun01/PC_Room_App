@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="메뉴 추가"
+            android:textColor="@color/black"
             android:textSize="25sp"
             android:layout_gravity="center"/>
 
@@ -85,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="필요 재료"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_gravity="center"/>
 
 
@@ -100,6 +101,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
+            android:backgroundTint="#8131B3"
             android:layout_marginRight="10dp"
             android:background="@drawable/baseline_add_box_24" />
 
@@ -165,6 +167,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="취소"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
                 android:textSize="20sp"/>
 
             <Button
@@ -172,6 +176,8 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#8131B3"
+                android:textColor="@color/white"
                 android:text="확인"
                 android:textSize="20sp"/>
 

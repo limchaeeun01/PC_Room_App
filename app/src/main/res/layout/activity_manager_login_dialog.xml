@@ -21,6 +21,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:text="매니저 로그인"
         android:textSize="25sp"
         android:layout_gravity="center"/>
@@ -39,22 +40,15 @@
             android:hint="액세스 코드" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/okBtn"
         android:layout_marginTop="25dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#8131B3"
+        android:textColor="@color/white"
         android:text="확인"
         android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/loginAsUserBtn"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="손님으로 로그인하기"
-        android:textStyle="italic"
-        android:layout_gravity="center"/>
 
 </LinearLayout>

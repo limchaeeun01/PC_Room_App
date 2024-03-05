@@ -32,7 +32,7 @@
                 android:layout_weight="1"
                 android:textSize="17sp"
                 android:backgroundTint="#C3C3C3"
-                android:text="재고관리" />
+                android:text="재고 관리" />
 
         </LinearLayout>
 
@@ -75,37 +75,49 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_weight="18"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="6"
                         android:gravity="center"
                         android:text="재고명"
                         android:textSize="15sp" />
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/stockNumberBtn"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="재고량"
-                        android:textSize="15sp" />
+                        android:layout_weight="3"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="재고량"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/stockNumImg"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="left"
+                            android:src="@drawable/baseline_arrow_drop_down_24"
+                            android:visibility="gone"/>
+
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:gravity="center"
-                        android:text=""
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="9"
                         android:gravity="center"
                         android:text=""
                         android:textSize="15sp" />
@@ -139,21 +151,59 @@
                     android:text="재고명"
                     android:textSize="15sp" />
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/menuNumberBtn"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="재고량"
-                    android:textSize="15sp" />
+                    android:weightSum="6">
 
-                <TextView
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="재고량"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/menuNumImg"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_gravity="left"
+                        android:src="@drawable/baseline_arrow_drop_down_24"
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menuSaleBtn"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="판매량"
-                    android:textSize="15sp" />
+                    android:weightSum="6">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="판매량"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/menuSaleImg"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_gravity="left"
+                        android:src="@drawable/baseline_arrow_drop_down_24"
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
 
 
             </LinearLayout>

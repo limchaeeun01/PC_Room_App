@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,8 @@ import com.chaeni__beam.pcroomapp.db.MainData
 import com.chaeni__beam.pcroomapp.db.OrderFormData
 import com.chaeni__beam.pcroomapp.db.StockData
 
-class OrderFormManagerAdapter(val items : MutableList<OrderFormData>):RecyclerView.Adapter<OrderFormManagerAdapter.ViewHolder>() {
+class OrderFormManagerAdapter(val items : MutableList<OrderFormData>):RecyclerView.Adapter<OrderFormManagerAdapter.ViewHolder>(),
+MenuStockCalc{
 
     lateinit var database : SQLiteDatabase
 
@@ -64,10 +66,27 @@ class OrderFormManagerAdapter(val items : MutableList<OrderFormData>):RecyclerVi
                     val sql = "UPDATE OrderForm SET order_status =? WHERE order_id =?"
                     val params = arrayOf("판매완료", items[position].orderId)
                     database.execSQL(sql, params)
+
+                    val sql2 = "UPDATE Menu SET menu_sale = menu_sale+? WHERE menu_name =?"
+                    val params2 = arrayOf(items[position].order_number, items[position].menu_name)
+                    database.execSQL(sql2, params2)
+
+                    val cursor = database.rawQuery("SELECT stock_code, stock_need FROM Ingredient " +
+                            "WHERE menu_code=${items[position].menu_code}", null)
+
+                    for(i in 0 .. cursor.count-1){
+                        cursor.moveToNext()
+                        val stock_need = cursor.getInt(1)
+                        val sql = "UPDATE Stock SET stock_number=stock_number-${stock_need} WHERE stock_code =?"
+                        val params = arrayOf(cursor.getInt(0))
+                        database.execSQL(sql, params)
+                    }
+
                 }
 
                 holder.soldBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#A5A5A5"))
                 holder.statusArea.setBackgroundColor(Color.parseColor("#DADADA"))
+                items[position].order_status = "판매완료"
 
             }
         }
@@ -86,7 +105,7 @@ class OrderFormManagerAdapter(val items : MutableList<OrderFormData>):RecyclerVi
                 holder.cancleBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#A5A5A5"))
                 holder.statusImg.setBackgroundColor(Color.parseColor("#938C95"))
                 holder.statusArea.setBackgroundColor(Color.parseColor("#DADADA"))
-
+                items[position].order_status = "주문취소"
             }
         }
     }
@@ -111,6 +130,9 @@ class OrderFormManagerAdapter(val items : MutableList<OrderFormData>):RecyclerVi
             orderTimeStamp.text = "주문일시 : " + items.order_timeStamp
             orderInfo.text = items.menu_name+ " x " + items.order_number
             orderPrice.text= items.order_price.toString() + "원"
+
+            soldBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1F1F1"))
+            statusArea.setBackgroundColor(Color.parseColor("#FFFFFF"))
 
             if(items.order_status == "판매완료"){
                 soldBtn.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#A5A5A5"))

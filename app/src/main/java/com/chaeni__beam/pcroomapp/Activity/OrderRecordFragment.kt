@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaeni__beam.pcroomapp.Adapter.OrderFormManagerAdapter
 import com.chaeni__beam.pcroomapp.Adapter.OrderFormUserAdapter
 import com.chaeni__beam.pcroomapp.Adapter.StockAdapter
+import com.chaeni__beam.pcroomapp.Dialog.ModifyStockDialog
+import com.chaeni__beam.pcroomapp.Dialog.ModifyUserInfoDialog
 import com.chaeni__beam.pcroomapp.R
 import com.chaeni__beam.pcroomapp.databinding.FragmentOrderRecordBinding
 import com.chaeni__beam.pcroomapp.databinding.FragmentOrderStatusBinding
@@ -48,6 +50,8 @@ class OrderRecordFragment : Fragment(), View.OnClickListener {
         _binding = FragmentOrderRecordBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.userInfoBtn.setOnClickListener(this)
+
         readOrder()
 
         return view
@@ -74,14 +78,14 @@ class OrderRecordFragment : Fragment(), View.OnClickListener {
                         "WHERE user_code=${cursor1.getInt(1)}", null
             )
             val cursor3 = database.rawQuery(
-                "SELECT menu_name, menu_price FROM Menu " +
+                "SELECT menu_code, menu_name, menu_price FROM Menu " +
                         "WHERE menu_code=${cursor1.getInt(2)}", null
             )
             cursor2.moveToNext()
             cursor3.moveToNext()
             val data = OrderFormData(
                 cursor2.getInt(0), cursor2.getString(1),
-                cursor1.getInt(0), cursor3.getString(0), cursor1.getInt(4),
+                cursor1.getInt(0), cursor3.getInt(0), cursor3.getString(1), cursor1.getInt(4),
                 cursor1.getInt(3), cursor1.getString(5), cursor1.getString(6)
             )
 
@@ -101,8 +105,12 @@ class OrderRecordFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.userInfoBtn ->{
+                ModifyUserInfoDialog(requireContext(), user_code!!, requireActivity() as UserActivity){
 
+                }.show()
+            }
+        }
     }
-
-
 }

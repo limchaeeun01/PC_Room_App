@@ -63,7 +63,7 @@ class InsertStockDialog (
         openDatabase()
 
         if(database != null){
-            val sql = "INSERT INTO Stock (stock_name, stock_nuInsertStockDialogmber) VALUES" +
+            val sql = "INSERT INTO Stock (stock_name, stock_number) VALUES" +
                     "(?, ?)"
             val params = arrayOf(name, number)
 

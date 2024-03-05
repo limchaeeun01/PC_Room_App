@@ -4,20 +4,20 @@
         <item>전체</item>
         <item>밥류</item>
         <item>면류</item>
-        <item>핫도그</item>
+        <item>과자</item>
         <item>사이드</item>
         <item>토핑</item>
-        <item>기타</item>
+        <item>음료</item>
     </string-array>
 
     <string-array name="food_category2">
         <item>카테고리 선택</item>
         <item>밥류</item>
         <item>면류</item>
-        <item>핫도그</item>
+        <item>과자</item>
         <item>사이드</item>
         <item>토핑</item>
-        <item>기타</item>
+        <item>음료</item>
     </string-array>
 
 </resources>

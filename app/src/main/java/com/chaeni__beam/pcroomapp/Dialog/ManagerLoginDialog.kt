@@ -30,7 +30,6 @@ class ManagerLoginDialog (
         binding = ActivityManagerLoginDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loginAsUserBtn.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         initViews()
     }
 
@@ -51,10 +50,6 @@ class ManagerLoginDialog (
 
         closeBtn.setOnClickListener{
             dismiss()
-        }
-
-        loginAsUserBtn.setOnClickListener{
-            okCallback("User")
         }
 
 

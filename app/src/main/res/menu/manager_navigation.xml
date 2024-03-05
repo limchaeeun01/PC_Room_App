@@ -13,5 +13,9 @@
         android:id="@+id/nav_bottom_stock"
         android:icon="@drawable/baseline_ballot_24"
         android:title="메뉴/재고관리" />
+    <item
+        android:id="@+id/nav_bottom_user"
+        android:icon="@drawable/baseline_account_box_24"
+        android:title="회원/매니저 관리"/>
 
 </menu>

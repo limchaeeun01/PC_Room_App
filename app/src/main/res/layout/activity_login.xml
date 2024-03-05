@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="회원 로그인"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:layout_gravity="center"/>
 
@@ -70,6 +71,8 @@
         android:layout_width="270dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
+        android:backgroundTint="#8131B3"
+        android:textColor="@color/white"
         android:text="로그인"/>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -77,6 +80,8 @@
         android:layout_marginTop="5dp"
         android:layout_width="270dp"
         android:layout_height="60dp"
+        android:backgroundTint="#8131B3"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:text="회원가입"/>
 

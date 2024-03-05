@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chaeni__beam.pcroomapp.Adapter.MenuStockCalc
 import com.chaeni__beam.pcroomapp.Adapter.SelectedIngAdapter
 import com.chaeni__beam.pcroomapp.R
 import com.chaeni__beam.pcroomapp.databinding.ActivityInsertMenuBinding
@@ -27,7 +28,7 @@ import com.chaeni__beam.pcroomapp.db.IngData
 import com.chaeni__beam.pcroomapp.db.StockData
 import java.io.ByteArrayOutputStream
 
-class InsertMenuActivity : AppCompatActivity(), View.OnClickListener {
+class InsertMenuActivity : AppCompatActivity(), View.OnClickListener, MenuStockCalc {
 
     val binding by lazy { ActivityInsertMenuBinding.inflate(layoutInflater) }
 
@@ -103,7 +104,7 @@ class InsertMenuActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.addIngredientBtn -> {
                 SelectIngDialog(this){
-                    val data = it.split('/')
+                    val data = it.split(';')
                     ingList.add(IngData(data[0].toInt(), data[1] ,data[2].toInt()))
                     adapter.notifyDataSetChanged()
                 }.show()
@@ -159,6 +160,8 @@ class InsertMenuActivity : AppCompatActivity(), View.OnClickListener {
         insertIng(cursor.getInt(0))
         cursor.close()
 
+        menuStockCalc(this)
+
     }
 
     fun insertIng(code : Int){
@@ -195,9 +198,9 @@ class InsertMenuActivity : AppCompatActivity(), View.OnClickListener {
                     2 -> {
                         category = "면류"
                     }
-                    // 핫도그
+                    // 과자
                     3 -> {
-                        category = "핫도그"
+                        category = "과자"
                     }
                     // 사이드
                     4 -> {
@@ -207,9 +210,9 @@ class InsertMenuActivity : AppCompatActivity(), View.OnClickListener {
                     5 -> {
                         category = "토핑"
                     }
-                    // 기타
+                    // 음료
                     6 -> {
-                        category = "기타"
+                        category = "음료"
                     }
                 }
             }

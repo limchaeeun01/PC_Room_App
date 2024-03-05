@@ -51,6 +51,8 @@ class OrderStatusFragment : Fragment(), View.OnClickListener {
         binding.soldBtn.setOnClickListener(this)
         binding.cancleBtn.setOnClickListener(this)
 
+        mode = "all"
+
         readOrder()
 
         return view
@@ -84,14 +86,14 @@ class OrderStatusFragment : Fragment(), View.OnClickListener {
                             "WHERE user_code=${cursor1.getInt(1)}", null
                 )
                 val cursor3 = database.rawQuery(
-                    "SELECT menu_name, menu_price FROM Menu " +
+                    "SELECT menu_code, menu_name, menu_price FROM Menu " +
                             "WHERE menu_code=${cursor1.getInt(2)}", null
                 )
                 cursor2.moveToNext()
                 cursor3.moveToNext()
                 val data = OrderFormData(
                     cursor2.getInt(0), cursor2.getString(1),
-                    cursor1.getInt(0), cursor3.getString(0), cursor1.getInt(4),
+                    cursor1.getInt(0), cursor3.getInt(0), cursor3.getString(1), cursor1.getInt(4),
                     cursor1.getInt(3), cursor1.getString(5), cursor1.getString(6)
                 )
 
@@ -114,14 +116,14 @@ class OrderStatusFragment : Fragment(), View.OnClickListener {
                             "WHERE user_code=${cursor1.getInt(1)}", null
                 )
                 val cursor3 = database.rawQuery(
-                    "SELECT menu_name, menu_price FROM Menu " +
+                    "SELECT menu_code, menu_name, menu_price FROM Menu " +
                             "WHERE menu_code=${cursor1.getInt(2)}", null
                 )
                 cursor2.moveToNext()
                 cursor3.moveToNext()
                 val data = OrderFormData(
                     cursor2.getInt(0), cursor2.getString(1),
-                    cursor1.getInt(0), cursor3.getString(0), cursor1.getInt(4),
+                    cursor1.getInt(0), cursor3.getInt(0), cursor3.getString(1), cursor1.getInt(4),
                     cursor1.getInt(3), cursor1.getString(5), cursor1.getString(6)
                 )
 

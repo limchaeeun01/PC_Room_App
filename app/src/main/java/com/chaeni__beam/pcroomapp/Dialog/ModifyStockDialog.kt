@@ -14,7 +14,7 @@ import com.chaeni__beam.pcroomapp.db.DataBaseHelper
 class ModifyStockDialog (
     context: Context,
     name : String, number : String, code : Int,
-    private val okCallback: (String) -> Unit,
+    private val okCallback: () -> Unit,
 ) : Dialog(context) { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
 
     private lateinit var binding: ActivityModifyStockDialogBinding
@@ -58,6 +58,7 @@ class ModifyStockDialog (
 
         deleteBtn.setOnClickListener{
             deleteStock(code)
+            okCallback()
             dismiss()
         }
 
@@ -85,8 +86,9 @@ class ModifyStockDialog (
     fun deleteStock(code : Int){
         openDatabase()
         if(database != null){
+            val sql2 = "DELETE FROM Ingredient WHERE stock_code=$code"
+            database.execSQL(sql2)
             val sql = "DELETE FROM Stock WHERE stock_code=$code"
-
             database.execSQL(sql)
         }
     }

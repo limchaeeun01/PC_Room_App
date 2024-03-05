@@ -3,53 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="10dp"
+    android:paddingVertical="5dp"
     android:layout_gravity="center"
-    android:orientation="horizontal"
-    android:weightSum="5">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/menuCategory"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:text="종류"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_weight="1"/>
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-    <TextView
-        android:id="@+id/menuName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="이름"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_weight="2"/>
+        <TextView
+            android:id="@+id/menuCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="종류"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
 
-    <TextView
-        android:id="@+id/menuNumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="재고량"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/menuName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="이름"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_weight="2"/>
 
-    <TextView
-        android:id="@+id/menuSale"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="판매량"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="6">
+
+            <TextView
+                android:id="@+id/menuNumber"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="재고량"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_gravity="left"
+                android:src="@drawable/baseline_arrow_drop_down_24"
+                android:visibility="gone"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/menuSale"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="판매량"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9E9E9E"/>
+
 
 </LinearLayout>

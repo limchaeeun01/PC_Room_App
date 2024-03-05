@@ -22,21 +22,15 @@ class MainAdapter(val userCode : Int, val items : MutableList<MainData>):Recycle
 
     lateinit var database : SQLiteDatabase
 
-    interface onItemClickListener {
+    interface OnItemClickListener {
         fun onItemClick(v : View, position: Int){
-            val introArea = v.findViewById<CardView>(R.id.introArea)
 
-            if(introArea.visibility == 8){
-                introArea.visibility = View.VISIBLE
-            }else{
-                introArea.visibility = View.GONE
-            }
         }
     }
 
-    private var itemClickListener: onItemClickListener?=null
+    private var itemClickListener: OnItemClickListener?=null
 
-    fun setItemClickListener(itemClickListener: onItemClickListener) {
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
         this.itemClickListener = itemClickListener
     }
 
@@ -52,7 +46,10 @@ class MainAdapter(val userCode : Int, val items : MutableList<MainData>):Recycle
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            itemClickListener?.onItemClick(it, position)
+            if (items[position].soldOut == "false") {
+                itemClickListener?.onItemClick(it, position)
+                holder.introArea.visibility = if (holder.introArea.visibility == View.GONE) View.VISIBLE else View.GONE
+            }
         }
 
         holder.bind(items[position])
@@ -67,17 +64,29 @@ class MainAdapter(val userCode : Int, val items : MutableList<MainData>):Recycle
 
             val price = items[position].price * holder.number.text.toString().toInt()
 
-            if(database != null){
-                val sql = "INSERT INTO OrderForm (user_code, menu_code, order_number," +
-                        "order_price, order_timeStamp, order_status)" +
-                        "VALUES (?, ?, ?, ?, ?, ?)"
+            val cursor = database.rawQuery("SELECT menu_number, menu_name FROM Menu " +
+                    "WHERE menu_code = '${items[position].code}'", null)
+            cursor.moveToNext()
+            if(cursor.getInt(0) >= holder.number.text.toString().toInt()){ //재고량>=주문량
+                if(database != null){
+                    val sql = "INSERT INTO OrderForm (user_code, menu_code, order_number," +
+                            "order_price, order_timeStamp, order_status)" +
+                            "VALUES (?, ?, ?, ?, ?, ?)"
 
-                val params = arrayOf(userCode, items[position].code, holder.number.text.toString().toInt(),
-                price, currentDate, "주문완료")
-                database.execSQL(sql, params)
+                    val params = arrayOf(userCode, items[position].code, holder.number.text.toString().toInt(),
+                        price, currentDate, "주문완료")
+                    database.execSQL(sql, params)
+                }
+                Toast.makeText(holder.itemView?.context, "주문 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(holder.itemView?.context, "${cursor.getString(1)}의 재고량이 주문량보다 적어 " +
+                        "주문이 자동 취소되었습니다. (${cursor.getString(1)}의 재고량: ${cursor.getInt(0)})",
+                    Toast.LENGTH_SHORT).show()
             }
+            cursor.close()
 
-            Toast.makeText(holder.itemView?.context, "주문 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            holder.introArea.visibility = View.GONE
+
         }
     }
 
@@ -86,13 +95,15 @@ class MainAdapter(val userCode : Int, val items : MutableList<MainData>):Recycle
         val name : TextView = itemView.findViewById(R.id.menuName)
         val price : TextView = itemView.findViewById(R.id.menuPrice)
         val intro : TextView = itemView.findViewById(R.id.introText)
-        val soldOut = itemView.findViewById<CardView>(R.id.soldOutArea)
+        val soldOutArea = itemView.findViewById<CardView>(R.id.soldOutArea)
 
         val subBtn = itemView.findViewById<Button>(R.id.numberpicker_subBtn)
         val addBtn = itemView.findViewById<Button>(R.id.numberpicker_addBtn)
         val number = itemView.findViewById<TextView>(R.id.orderNumber)
 
         val orderBtn = itemView.findViewById<Button>(R.id.orderBtn)
+
+        val introArea = itemView.findViewById<CardView>(R.id.introArea)
 
         fun bind(items : MainData){
             if(items.image!=null){
@@ -111,8 +122,12 @@ class MainAdapter(val userCode : Int, val items : MutableList<MainData>):Recycle
             price.text = items.price.toString() + "원"
             intro.text = items.intro
 
+            introArea.visibility = View.GONE
+
             if(items.soldOut == "true"){
-                soldOut.visibility = View.VISIBLE
+                soldOutArea.visibility = View.VISIBLE
+            }else{
+                soldOutArea.visibility = View.GONE
             }
 
             subBtn.setOnClickListener{
