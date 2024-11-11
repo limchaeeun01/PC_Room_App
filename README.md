@@ -10,11 +10,9 @@
 데이터의 추가, 삭제, 수정 등을 모두 구현하고 사용할 수 있어 해당 주제를 선택함.
 
 ## 🖇️ 개발 환경
-SQLite(경량화된 데이터베이스 엔진으로, 안드로이드에서 빠르게 동작함.)
-
-Android studio
-
-kotlin
+- SQLite (경량화된 데이터베이스 엔진으로, 안드로이드에서 빠르게 동작함.)
+- Android studio
+- kotlin
 
 ## 📨 E/R 모델링
 ![image](https://github.com/user-attachments/assets/ed9f934b-bdd6-473f-9fb0-7c63dba1be62)
